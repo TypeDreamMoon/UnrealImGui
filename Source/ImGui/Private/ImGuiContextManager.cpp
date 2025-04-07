@@ -11,6 +11,8 @@
 
 #include <imgui.h>
 
+#include "Interfaces/IPluginManager.h"
+
 // MSVC warnings
 #ifdef _MSC_VER
 #pragma warning (disable: 4996) // 'This function or variable may be unsafe': strcpy, strdup, sprintf, vsnprintf, sscanf, fopen
@@ -266,9 +268,16 @@ void FImGuiContextManager::BuildFontAtlas(const TMap<FName, TSharedPtr<ImFontCon
 {
 	if (!FontAtlas.IsBuilt())
 	{
-		ImFontConfig FontConfig = {};
-		FontConfig.SizePixels = FMath::RoundFromZero(13.f * DPIScale);
-		FontAtlas.AddFontDefault(&FontConfig);
+		// 默认字体
+		// ImFontConfig FontConfig = {};
+		// FontConfig.SizePixels = FMath::RoundFromZero(13.f * DPIScale);
+		// FontAtlas.AddFontDefault(&FontConfig);
+
+		FString PluginPath = IPluginManager::Get().FindPlugin(TEXT("ImGui"))->GetBaseDir() / TEXT("Resources/Fonts/");
+		ImFontConfig TFontConfig = {};
+		TFontConfig.SizePixels = FMath::RoundFromZero(20.f * DPIScale);
+		strcpy_s(TFontConfig.Name, "TTTGB");
+		FontAtlas.AddFontFromFileTTF(TCHAR_TO_UTF8(*FString(PluginPath / TEXT("TTTGB.ttf"))), FMath::RoundFromZero(20.f * DPIScale), &TFontConfig, FontAtlas.GetGlyphRangesChineseFull());
 
 		// Build custom fonts
 		for (const TPair<FName, TSharedPtr<ImFontConfig>>& CustomFontPair : CustomFontConfigs)
