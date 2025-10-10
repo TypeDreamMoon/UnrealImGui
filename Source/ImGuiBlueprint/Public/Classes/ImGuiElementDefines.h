@@ -25,7 +25,7 @@ class IMGUIBLUEPRINT_API UImGuiElement_Text : public UImGuiElement
 	GENERATED_BODY()
 public:
 	virtual void Draw() override;
-	UPROPERTY() FString Text;
+	FString* Text;
 };
 
 UCLASS()

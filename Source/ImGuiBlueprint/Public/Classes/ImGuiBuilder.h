@@ -24,8 +24,11 @@ public:
 
 	// ==================== 文本类控件 ====================
 
-	UFUNCTION(BlueprintCallable, Category = "ImGui|Builder|Text")
+	UFUNCTION(BlueprintCallable, Category = "ImGui|Builder|Text", Meta = (AutoCreateRefTerm="InText"))
 	UImGuiBuilder* Text(const FString& InText);
+
+	UFUNCTION(BlueprintCallable, Category = "ImGui|Builder|Text", Meta = (AutoCreateRefTerm="InText"))
+	UImGuiBuilder* TextRef(UPARAM(ref) FString& InText);
 
 	UFUNCTION(BlueprintCallable, Category = "ImGui|Builder|Text")
 	UImGuiBuilder* TextColored(FLinearColor InColor, const FString& InText);

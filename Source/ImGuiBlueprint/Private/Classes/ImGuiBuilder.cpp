@@ -34,7 +34,15 @@ void UImGuiBuilder::AddElement(UImGuiElement* Element)
 UImGuiBuilder* UImGuiBuilder::Text(const FString& InText)
 {
 	auto* Element = NewObject<UImGuiElement_Text>(this);
-	Element->Text = InText;
+	Element->Text = const_cast<FString*>(&InText);
+	AddElement(Element);
+	return this;
+}
+
+UImGuiBuilder* UImGuiBuilder::TextRef(FString& InText)
+{
+	auto* Element = NewObject<UImGuiElement_Text>(this);
+	Element->Text = &InText;
 	AddElement(Element);
 	return this;
 }
