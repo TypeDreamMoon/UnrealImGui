@@ -60,3 +60,19 @@ void UImGuiPainter::ClearAllWindows()
 {
 	Builders.Empty();
 }
+
+UImGuiPainterDynamic* UImGuiPainterDynamic::Create(UObject* WorldContextObject)
+{
+	return NewObject<UImGuiPainterDynamic>(WorldContextObject);
+}
+
+UImGuiBuilder* UImGuiPainterDynamic::Draw(FString InWindowName)
+{
+	Builder = NewObject<UImGuiBuilder>(this);
+	if (Builder)
+	{
+		Builder->SetWindowName(InWindowName);
+	}
+
+	return Builder;
+}

@@ -5,7 +5,7 @@
 
 void UImGuiElement_Text::Draw()
 {
-	ImGui::Text("%s", TCHAR_TO_ANSI(**Text));
+	ImGui::Text("%s", TCHAR_TO_UTF8(**Text));
 }
 
 void UImGuiElement_TextColored::Draw()

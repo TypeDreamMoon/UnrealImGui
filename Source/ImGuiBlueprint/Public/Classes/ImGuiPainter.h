@@ -8,9 +8,6 @@
 
 class UImGuiBuilder;
 
-/**
- *	这个类是绘制/创建ImGui的类
- */
 UCLASS(BlueprintType, Blueprintable)
 class IMGUIBLUEPRINT_API UImGuiPainter : public UObject, public FTickableGameObject
 {
@@ -48,4 +45,21 @@ protected:
 	// 所有的Builder
 	UPROPERTY()
 	TArray<TObjectPtr<UImGuiBuilder>> Builders;
+};
+
+UCLASS(Blueprintable, BlueprintType)
+class UImGuiPainterDynamic : public UObject
+{
+	GENERATED_BODY()
+
+public:
+	UFUNCTION(BlueprintCallable, Category = "ImGui", Meta = (WorldContext = "WorldContextObject"))
+	static UImGuiPainterDynamic* Create(UObject* WorldContextObject);
+
+	UFUNCTION(BlueprintCallable)
+	UImGuiBuilder* Draw(FString InWindowName);
+
+protected:
+	UPROPERTY()
+	TObjectPtr<UImGuiBuilder> Builder;
 };

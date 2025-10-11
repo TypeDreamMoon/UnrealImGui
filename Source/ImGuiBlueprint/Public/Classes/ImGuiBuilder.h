@@ -19,6 +19,7 @@ class IMGUIBLUEPRINT_API UImGuiBuilder : public UObject
 
 public:
 	void SetWindowName(const FString& InWindowName);
+	UFUNCTION(BlueprintCallable)
 	void Draw();
 	void AddElement(UImGuiElement* Element);
 

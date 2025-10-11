@@ -22,6 +22,10 @@ void UImGuiBuilder::Draw()
 		}
 		ImGui::End();
 	}
+	else
+	{
+		ImGui::End();
+	}
 }
 
 void UImGuiBuilder::AddElement(UImGuiElement* Element)
